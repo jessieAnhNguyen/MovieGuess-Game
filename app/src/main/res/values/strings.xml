@@ -9,4 +9,9 @@
     <string name="game_character">Game Character</string>
     <string name="config">Configuration</string>
     <string name="difficult_level">Choose difficulty level</string>
+    <string name="game_over">Game Over!</string>
+    <string name="your_results">Your Results</string>
+    <string name="correct_answers">Correct Answers</string>
+    <string name="wrong_answer">Wrong Answers</string>
+    <string name="play_again">Play Again!</string>
 </resources>
