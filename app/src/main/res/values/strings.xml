@@ -7,4 +7,6 @@
     <string name="settings_title">Choose your settings</string>
     <string name="theme_color">Theme Color</string>
     <string name="game_character">Game Character</string>
+    <string name="config">Configuration</string>
+    <string name="difficult_level">Choose difficulty level</string>
 </resources>
