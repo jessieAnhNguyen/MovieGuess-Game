@@ -17,16 +17,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13999999" />
+        app:layout_constraintVertical_bias="0.085" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="146dp"
         android:layout_height="79dp"
-        app:layout_constraintBottom_toTopOf="@+id/gameCharacter_textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="@+id/themeColor_textView"
         app:layout_constraintTop_toBottomOf="@+id/themeColor_textView">
 
         <RadioButton
@@ -50,15 +48,16 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/gameCharacter_textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.175"
+        app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settingsTitle_textView"
-        app:layout_constraintVertical_bias="0.26" />
+        app:layout_constraintVertical_bias="0.122" />
 
     <TextView
         android:id="@+id/gameCharacter_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="@string/game_character"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup2"
@@ -71,12 +70,9 @@
         android:id="@+id/radioGroup2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gameCharacter_textView"
-        app:layout_constraintVertical_bias="0.29000002">
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="@+id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/gameCharacter_textView">
 
         <RadioButton
             android:id="@+id/radioButton3"
@@ -96,4 +92,14 @@
             android:layout_height="wrap_content"
             android:text="RadioButton" />
     </RadioGroup>
+
+    <Button
+        android:id="@+id/backtoWelcome_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back_to_welcome"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
