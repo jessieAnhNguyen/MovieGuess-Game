@@ -43,23 +43,24 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:text="@{vm.solutions[1]}"
             app:layout_constraintBottom_toTopOf="@+id/button7"
             app:layout_constraintEnd_toEndOf="@+id/button5"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button5"
-            android:text="@{vm.solutions[1]}"/>
+            app:layout_constraintVertical_bias="0.709" />
 
         <Button
             android:id="@+id/button7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="68dp"
             android:text="@{vm.solutions[2]}"
             app:layout_constraintBottom_toTopOf="@+id/gameOver_button"
             app:layout_constraintEnd_toEndOf="@+id/button6"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -67,10 +68,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
-            android:text="Game Over"
+            android:text="@string/game_over"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/correctSign_imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:src="@drawable/correct_sign"
+            app:layout_constraintBottom_toTopOf="@+id/button5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -32,7 +32,7 @@ class GameFragment : Fragment() {
             vm = viewModel
             lifecycleOwner = this@GameFragment
         }
-        
+
         return binding.root
     }
 
