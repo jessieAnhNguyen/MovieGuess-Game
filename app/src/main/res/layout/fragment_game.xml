@@ -51,13 +51,13 @@
         android:layout_marginStart="20dp"
         android:layout_marginBottom="40dp"
         android:text="answer3"
-        app:layout_constraintBottom_toTopOf="@+id/button8"
+        app:layout_constraintBottom_toTopOf="@+id/gameOver_button"
         app:layout_constraintEnd_toEndOf="@+id/button6"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/gameOver_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
