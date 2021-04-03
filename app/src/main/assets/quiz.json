@@ -1,0 +1,34 @@
+[
+  {
+    "question" : "Melloria means?",
+    "solutions" : ["Hang in there", "Rock On", "Melli-what", "Ever better"]
+  },
+  {
+    "question" : "UR was established in?",
+    "solutions" : ["1492", "1500", "1796", "1850"]
+  },
+  {
+    "question" : "The first female student was admitted in?",
+    "solutions" : ["1066", "1455", "1959", "1900"]
+  },
+  {
+    "question" : "A major donor was named?",
+    "solutions" : ["Pillsbury", "Napoleon", "Smith", "Eastman"]
+  },
+  {
+    "question" : "The first UR president's name was?",
+    "solutions" : ["Bush", "Johnson", "Reagan?", "Kendrick"]
+  },
+  {
+    "question" : "Approximate number of engineering undergraduates in 2018?",
+    "solutions" : ["635", "982", "1259", "1758"]
+  },
+  {
+    "question" : "The football team is called?",
+    "solutions" : ["Ants", "Ravens", "Rangers", "Yellowjackets"]
+  },
+  {
+    "question" : "The mascot's name is?",
+    "solutions" : ["Bullwinkle", "Ringo", "Yoda", "Rocky"]
+  }
+]
