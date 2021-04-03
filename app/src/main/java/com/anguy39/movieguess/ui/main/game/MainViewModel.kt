@@ -1,4 +1,4 @@
-package com.anguy39.movieguess.ui.main
+package com.anguy39.movieguess.ui.main.game
 
 import androidx.lifecycle.ViewModel
 

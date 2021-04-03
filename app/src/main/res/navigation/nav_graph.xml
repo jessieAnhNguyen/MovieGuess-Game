@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
-        android:name="com.anguy39.movieguess.ui.main.GameFragment"
+        android:name="com.anguy39.movieguess.ui.main.game.GameFragment"
         android:label="fragment_game"
         tools:layout="@layout/fragment_game" >
         <action
