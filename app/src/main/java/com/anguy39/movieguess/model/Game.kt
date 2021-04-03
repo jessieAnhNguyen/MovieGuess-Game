@@ -40,7 +40,7 @@ class Game (jsonString: String) {
     }
 
     companion object {
-        const val NUM_QUESTIONS = 5
+        const val NUM_QUESTIONS = 4
     }
 
 }

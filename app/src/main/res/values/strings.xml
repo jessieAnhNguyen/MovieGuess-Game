@@ -16,4 +16,5 @@
     <string name="play_again">Play Again!</string>
     <string name="start_game">Start Game</string>
     <string name="back_to_welcome">Save Settings</string>
+    <string name="next_question">Next</string>
 </resources>

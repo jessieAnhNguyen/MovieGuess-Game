@@ -20,13 +20,12 @@
             android:src="@drawable/belle_welcome"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.125" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/answer1_button"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="80dp"
@@ -39,27 +38,26 @@
             android:text="@{vm.solutions[0]}"/>
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/answer2_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="@{vm.solutions[1]}"
-            app:layout_constraintBottom_toTopOf="@+id/button7"
-            app:layout_constraintEnd_toEndOf="@+id/button5"
+            app:layout_constraintBottom_toTopOf="@+id/answer3_button"
+            app:layout_constraintEnd_toEndOf="@+id/answer1_button"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button5"
-            app:layout_constraintVertical_bias="0.709" />
+            app:layout_constraintTop_toBottomOf="@+id/answer1_button" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/answer3_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginBottom="68dp"
             android:text="@{vm.solutions[2]}"
             app:layout_constraintBottom_toTopOf="@+id/gameOver_button"
-            app:layout_constraintEnd_toEndOf="@+id/button6"
+            app:layout_constraintEnd_toEndOf="@+id/answer2_button"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -70,20 +68,29 @@
             android:layout_marginBottom="40dp"
             android:text="@string/game_over"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/nextQuestion_button"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/correctSign_imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scaleX="0.5"
-            android:scaleY="0.5"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
             android:src="@drawable/correct_sign"
-            app:layout_constraintBottom_toTopOf="@+id/button5"
+            app:layout_constraintBottom_toTopOf="@+id/answer1_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/nextQuestion_button"
+            android:layout_width="98dp"
+            android:layout_height="42dp"
+            android:text="@string/next_question"
+            app:layout_constraintBottom_toBottomOf="@+id/gameOver_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/gameOver_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
