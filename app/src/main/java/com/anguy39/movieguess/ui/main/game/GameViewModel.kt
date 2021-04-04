@@ -38,4 +38,8 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
         game.answer(index)
         _answers.value = game.answers.toBooleanArray()
     }
+
+    fun updateCharacter(characterSelection: Int) {
+        game.updateCharacter(characterSelection)
+    }
 }

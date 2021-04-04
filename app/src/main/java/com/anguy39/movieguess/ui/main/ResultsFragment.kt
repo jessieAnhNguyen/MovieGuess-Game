@@ -33,7 +33,7 @@ class ResultsFragment : Fragment() {
         arguments?.let {
             val safeArgs = ResultsFragmentArgs.fromBundle(it)
             val numAnswers = safeArgs.numAnswers
-            val correctAnswers = safeArgs.correctAnswers
+            val correctAnswers = safeArgs.correctAnswers ?: 0
 
             binding.correctAnswerTextView.text = correctAnswers.toString()
             binding.wrongAnswerTextView.text = (numAnswers - correctAnswers).toString()

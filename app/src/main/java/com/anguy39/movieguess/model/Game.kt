@@ -16,6 +16,8 @@ class Game (jsonString: String) {
     lateinit var solutions: List<String>
     val answers: MutableList<Boolean> = mutableListOf()
 
+    var character = 0
+
     init {
         val gson = Gson()
         questions = gson.fromJson(jsonString, Questions::class.java)
@@ -24,6 +26,10 @@ class Game (jsonString: String) {
 
     fun answer(answer: Int) {
         answers.add(solutions[answer] == currentQuestion.solutions.last())
+    }
+
+    fun updateCharacter(characterSelection: Int) {
+        character = characterSelection
     }
 
     fun newQuestion() {

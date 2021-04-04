@@ -36,10 +36,12 @@
             app:destination="@id/welcomeFragment" />
         <argument
             android:name="correctAnswers"
-            app:argType="integer" />
+            app:argType="integer"
+            android:defaultValue="0" />
         <argument
             android:name="numAnswers"
-            app:argType="integer" />
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"

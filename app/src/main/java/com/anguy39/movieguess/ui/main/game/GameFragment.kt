@@ -1,7 +1,6 @@
 package com.anguy39.movieguess.ui.main.game
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,6 @@ import androidx.navigation.navGraphViewModels
 import com.anguy39.movieguess.R
 import com.anguy39.movieguess.databinding.FragmentGameBinding
 import com.anguy39.movieguess.model.Game
-import kotlin.math.log
 
 private const val TAG = "GameFragment"
 class GameFragment : Fragment() {
@@ -87,15 +85,20 @@ class GameFragment : Fragment() {
 
                 var done = (localAnswers.size > Game.NUM_QUESTIONS - 1)
 
+
                 binding.gameOverButton.setOnClickListener {
+                    val actionResults = GameFragmentDirections.actionGameFragmentToResultsFragment()
                     val correctAnswers = localAnswers.filter { it }.size
-                    val actionResults = GameFragmentDirections.actionGameFragmentToResultsFragment(correctAnswers, localAnswers.size)
-                    Navigation.findNavController(binding.root).navigate(actionResults)
+                    actionResults.correctAnswers= correctAnswers
+                    actionResults.numAnswers = localAnswers.size
+                    Navigation.findNavController(it).navigate(actionResults)
                 }
 
                 if (done) {
+                    val actionResults = GameFragmentDirections.actionGameFragmentToResultsFragment()
                     val correctAnswers = localAnswers.filter { it }.size
-                    val actionResults = GameFragmentDirections.actionGameFragmentToResultsFragment(correctAnswers, localAnswers.size)
+                    actionResults.correctAnswers= correctAnswers
+                    actionResults.numAnswers = localAnswers.size
                     Navigation.findNavController(binding.root).navigate(actionResults)
                 }
 

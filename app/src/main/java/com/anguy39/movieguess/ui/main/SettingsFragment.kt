@@ -32,28 +32,17 @@ class SettingsFragment : Fragment() {
             lifecycleOwner = this@SettingsFragment
         }
 
-        binding.backtoWelcomeButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_settingsFragment_to_welcomeFragment)
-        }
-
         binding.characterRadioGroup.setOnCheckedChangeListener { group, id ->
             val radio: RadioButton = group.findViewById(id)
             characterSelection = group.indexOfChild(radio)
         }
 
-//        binding.backtoWelcomeButton.setOnClickListener {
-//            if (characterSelection >= 0) {
-//                viewModel.answerQuestion(selection)
-//                if (localAnswers.isNotEmpty()) {
-//                    val actionEval = QuizFragmentDirections.actionQuizFragmentToEvalFragment(localAnswers)
-//                    Navigation.findNavController(it).navigate(actionEval)
-//                }
-//                viewModel.newQuestion()
-//            }
-//        }
-
-
-
+        binding.backtoWelcomeButton.setOnClickListener {
+            if (characterSelection >= 0) {
+                sharedViewModel.updateCharacter(characterSelection)
+                it.findNavController().navigate(R.id.action_settingsFragment_to_welcomeFragment)
+            }
+        }
         return binding.root
     }
 
