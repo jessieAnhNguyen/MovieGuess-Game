@@ -1,13 +1,11 @@
 package com.anguy39.movieguess.ui.main.game
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
 import androidx.navigation.Navigation
@@ -16,6 +14,7 @@ import androidx.navigation.navGraphViewModels
 import com.anguy39.movieguess.R
 import com.anguy39.movieguess.databinding.FragmentGameBinding
 import com.anguy39.movieguess.model.Game
+import kotlin.math.log
 
 private const val TAG = "GameFragment"
 class GameFragment : Fragment() {
@@ -86,20 +85,32 @@ class GameFragment : Fragment() {
                 binding.correctSignImageView.visibility = View.VISIBLE
                 binding.correctTextView.visibility = View.VISIBLE
 
-//                val correctAnswers = localAnswers.filter { it }.size
+                val correctAnswers = localAnswers.filter { it }.size
 //                binding.showResultsButton.visibility = if (done) View.VISIBLE else View.INVISIBLE
 //                binding.showResultsButton.setOnClickListener {
 //                    val actionResults = EvalFragmentDirections.actionEvalFragmentToResultsFragment(correctAnswers, answers.size)
 //                    Navigation.findNavController(view).navigate(actionResults)
 //                }
-            }
-            val done = (localAnswers.size > Game.NUM_QUESTIONS - 1)
-            binding.nextQuestionButton.visibility = if (done) View.INVISIBLE else View.VISIBLE
+                var done = (localAnswers.size > Game.NUM_QUESTIONS - 1)
+//                binding.nextQuestionButton.visibility = if (done) View.INVISIBLE else View.VISIBLE
 
+                binding.gameOverButton.setOnClickListener { done = true }
 
-            binding.nextQuestionButton.setOnClickListener {
-                viewModel.newQuestion()
-                it.findNavController().navigate(R.id.action_gameFragment_self)
+                if (done) {
+                    binding.nextQuestionButton.text = getText(R.string.show_results)
+                }
+
+                binding.nextQuestionButton.setOnClickListener {
+                    if (done) {
+                        val actionResults = GameFragmentDirections.actionGameFragmentToResultsFragment(correctAnswers, localAnswers.size)
+                        Navigation.findNavController(binding.root).navigate(actionResults)
+                    }
+                    else {
+                        viewModel.newQuestion()
+                        it.findNavController().navigate(R.id.action_gameFragment_self2)
+                    }
+
+                }
             }
         }
     }

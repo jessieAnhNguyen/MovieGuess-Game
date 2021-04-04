@@ -23,7 +23,7 @@
             android:id="@+id/action_gameFragment_to_resultsFragment"
             app:destination="@id/resultsFragment" />
         <action
-            android:id="@+id/action_gameFragment_self"
+            android:id="@+id/action_gameFragment_self2"
             app:destination="@id/gameFragment" />
     </fragment>
     <fragment
@@ -34,6 +34,12 @@
         <action
             android:id="@+id/action_resultsFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
+        <argument
+            android:name="correctAnswers"
+            app:argType="integer" />
+        <argument
+            android:name="numAnswers"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
