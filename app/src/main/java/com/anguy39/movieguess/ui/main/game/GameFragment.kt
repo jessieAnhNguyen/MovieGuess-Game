@@ -165,7 +165,7 @@ class GameFragment : Fragment() {
 
     companion object {
         const val ANSWER_MOVE_DURATION = 600L
-        const val WIN_ANIM_DURATION = 1000L
+        const val WIN_ANIM_DURATION = 800L
     }
 
 }

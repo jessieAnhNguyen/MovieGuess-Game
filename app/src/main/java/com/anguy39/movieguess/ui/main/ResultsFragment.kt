@@ -81,8 +81,11 @@ class ResultsFragment : Fragment() {
     }
 
     fun characterRotateAnimation(characterImage: ImageView) {
-        val animator1 = ObjectAnimator.ofFloat(characterImage, "scaleX", -1f, 0f)
-        val animator2 = ObjectAnimator.ofFloat(characterImage, "scaleX", 0f, 1f)
+        val animator1 = ObjectAnimator.ofFloat(characterImage, "rotation", -ANGLE, ANGLE)
+        val animator2 = ObjectAnimator.ofFloat(characterImage, "rotation", ANGLE, 0f)
+
+//        val animator1 = ObjectAnimator.ofFloat(characterImage, "scaleX", -1f, 0f)
+//        val animator2 = ObjectAnimator.ofFloat(characterImage, "scaleX", 0f, 1f)
 
         animator1.addListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator?) {}
@@ -112,5 +115,9 @@ class ResultsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val ANGLE = 60f
     }
 }
