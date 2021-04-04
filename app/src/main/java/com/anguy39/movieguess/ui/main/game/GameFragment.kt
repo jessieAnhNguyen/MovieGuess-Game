@@ -134,6 +134,7 @@ class GameFragment : Fragment() {
         animatorAnswer.start()
     }
 
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.answers.observe(viewLifecycleOwner, {

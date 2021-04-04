@@ -7,33 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.WelcomeFragment" >
 
-    <ImageView
-        android:id="@+id/mickeyWelcome_imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleX="1.2"
-        android:scaleY="1.2"
-        android:src="@drawable/mickey_welcome"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.106" />
-
     <TextView
         android:id="@+id/instructionWelcome_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:padding="20dp"
         android:text="@string/instruction_welcome"
         android:textAlignment="center"
         android:textColor="#302828"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mickeyWelcome_imageView"
-        app:layout_constraintVertical_bias="0.26999998" />
+        app:layout_constraintTop_toBottomOf="@+id/mickeyWelcome_imageView" />
 
     <Button
         android:id="@+id/beginGame_button"
@@ -42,10 +29,9 @@
         android:text="@string/begin_game"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instructionWelcome_textView"
-        app:layout_constraintVertical_bias="0.255" />
+        app:layout_constraintVertical_bias="0.25" />
 
     <Button
         android:id="@+id/settingsWelcome_button"
@@ -58,4 +44,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/beginGame_button"
         app:layout_constraintVertical_bias="0.305" />
+
+    <ImageView
+        android:id="@+id/mickeyWelcome_imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/mickey_welcome_new"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
