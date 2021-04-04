@@ -1,11 +1,13 @@
 package com.anguy39.movieguess.ui.main.game
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.anguy39.movieguess.model.Game
 
+private const val TAG = "GameViewModel"
 class GameViewModel(app: Application) : AndroidViewModel(app) {
 
     private lateinit var game: Game
@@ -21,6 +23,9 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
 
     private var _characters = MutableLiveData<List<String>>(listOf("Olaf", "Maleficent", "Cinderella"))
     var characters: LiveData<List<String>> = _characters
+
+    private var _character = MutableLiveData<Int>()
+    var character: LiveData<Int> = _character
 
     init {
         val jsonString = app.assets.open("quiz.json").bufferedReader().use { it.readText() }
@@ -41,5 +46,10 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
 
     fun updateCharacter(characterSelection: Int) {
         game.updateCharacter(characterSelection)
+
+    }
+
+    fun getCharacter() : Int {
+        return game.character
     }
 }

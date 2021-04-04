@@ -4,6 +4,7 @@ import android.util.Log
 import com.google.gson.Gson
 import kotlin.random.Random
 
+private const val TAG = "Game"
 
 data class Question(val question: String, val solutions: List<String>)
 
@@ -21,7 +22,7 @@ class Game (jsonString: String) {
     init {
         val gson = Gson()
         questions = gson.fromJson(jsonString, Questions::class.java)
-        Log.d("Questions: ", questions.toString())
+//        Log.d("Questions: ", questions.toString())
     }
 
     fun answer(answer: Int) {
@@ -30,7 +31,9 @@ class Game (jsonString: String) {
 
     fun updateCharacter(characterSelection: Int) {
         character = characterSelection
+//        Log.d(TAG, "Game: character is " + characterSelection)
     }
+
 
     fun newQuestion() {
         if (answers.size < NUM_QUESTIONS) {

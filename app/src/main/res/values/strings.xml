@@ -20,4 +20,7 @@
     <string name="correct_answer">Correct!</string>
     <string name="incorrect_answer">Incorrect</string>
     <string name="show_results">Results</string>
+    <string name="olaf_result">Olaf\'s Results</string>
+    <string name="maleficent_result">Maleficent\'s Results</string>
+    <string name="cinderella_result">Cinderella\'s Results</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.anguy39.movieguess.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.observe
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.anguy39.movieguess.R
@@ -15,6 +17,7 @@ import com.anguy39.movieguess.databinding.FragmentConfigBinding
 import com.anguy39.movieguess.databinding.FragmentSettingsBinding
 import com.anguy39.movieguess.ui.main.game.GameViewModel
 
+private const val TAG = "SettingsFragment"
 class SettingsFragment : Fragment() {
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
@@ -39,11 +42,19 @@ class SettingsFragment : Fragment() {
 
         binding.backtoWelcomeButton.setOnClickListener {
             if (characterSelection >= 0) {
+//                Log.d(TAG, "Settings: character is " + characterSelection)
                 sharedViewModel.updateCharacter(characterSelection)
                 it.findNavController().navigate(R.id.action_settingsFragment_to_welcomeFragment)
             }
         }
         return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        sharedViewModel.character.observe(viewLifecycleOwner, {
+            characterSelection = it
+        })
     }
 
     override fun onDestroyView() {

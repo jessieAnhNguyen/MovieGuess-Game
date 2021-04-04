@@ -1,6 +1,7 @@
 package com.anguy39.movieguess.ui.main.game
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -84,21 +85,23 @@ class GameFragment : Fragment() {
 
 
                 var done = (localAnswers.size > Game.NUM_QUESTIONS - 1)
-
+                val correctAnswers = localAnswers.filter { it }.size
 
                 binding.gameOverButton.setOnClickListener {
                     val actionResults = GameFragmentDirections.actionGameFragmentToResultsFragment()
-                    val correctAnswers = localAnswers.filter { it }.size
                     actionResults.correctAnswers= correctAnswers
                     actionResults.numAnswers = localAnswers.size
+//                    actionResults.character = viewModel.getCharacter()
+//                    Log.d(TAG, "Get character in Game: character is " + viewModel.getCharacter())
                     Navigation.findNavController(it).navigate(actionResults)
                 }
 
                 if (done) {
                     val actionResults = GameFragmentDirections.actionGameFragmentToResultsFragment()
-                    val correctAnswers = localAnswers.filter { it }.size
-                    actionResults.correctAnswers= correctAnswers
+                    actionResults.correctAnswers = correctAnswers
                     actionResults.numAnswers = localAnswers.size
+//                    actionResults.character = viewModel.getCharacter()
+//                    Log.d(TAG, "Get character in Game: character is " + viewModel.getCharacter())
                     Navigation.findNavController(binding.root).navigate(actionResults)
                 }
 
