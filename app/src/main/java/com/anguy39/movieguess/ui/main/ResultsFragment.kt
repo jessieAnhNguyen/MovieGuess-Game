@@ -55,7 +55,6 @@ class ResultsFragment : Fragment() {
             val numAnswers = safeArgs.numAnswers
             val correctAnswers = safeArgs.correctAnswers ?: 0
 //            Log.d(TAG, "Result: character is " + character)
-
 //            displayCharacter(character)
             binding.correctAnswerTextView.text = correctAnswers.toString()
             binding.wrongAnswerTextView.text = (numAnswers - correctAnswers).toString()

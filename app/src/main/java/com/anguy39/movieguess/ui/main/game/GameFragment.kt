@@ -126,9 +126,9 @@ class GameFragment : Fragment() {
     }
 
     private fun answerAnimation (answerChoice: Button) {
-        val animatorAnswer = ValueAnimator.ofFloat(-800f, 0f)
+        val animatorAnswer = ValueAnimator.ofFloat(600f, 0f)
         animatorAnswer.addUpdateListener {
-            answerChoice.setTranslationX(it.animatedValue as Float)
+            answerChoice.setTranslationY(it.animatedValue as Float)
 
         }
         animatorAnswer.interpolator = LinearInterpolator()
@@ -164,7 +164,7 @@ class GameFragment : Fragment() {
     }
 
     companion object {
-        const val ANSWER_MOVE_DURATION = 600L
+        const val ANSWER_MOVE_DURATION = 700L
         const val WIN_ANIM_DURATION = 800L
     }
 
