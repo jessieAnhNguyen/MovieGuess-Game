@@ -73,15 +73,13 @@
 
         <ImageView
             android:id="@+id/correctSign_imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleX="0.6"
-            android:scaleY="0.6"
+            android:layout_width="191dp"
+            android:layout_height="178dp"
             android:src="@drawable/correct_sign"
-            app:layout_constraintBottom_toTopOf="@+id/answer1_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
 
         <Button
             android:id="@+id/nextQuestion_button"
@@ -91,6 +89,17 @@
             app:layout_constraintBottom_toBottomOf="@+id/gameOver_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/gameOver_button" />
+
+        <TextView
+            android:id="@+id/correct_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/answer1_button"
+            app:layout_constraintEnd_toEndOf="@+id/correctSign_imageView"
+            app:layout_constraintStart_toStartOf="@+id/correctSign_imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -37,6 +37,9 @@ class GameFragment : Fragment() {
             lifecycleOwner = this@GameFragment
         }
 
+        binding.correctSignImageView.visibility = View.INVISIBLE
+        binding.correctTextView.visibility = View.INVISIBLE
+
         binding.gameOverButton.setOnClickListener {
             it.findNavController().navigate(R.id.action_gameFragment_to_resultsFragment)
         }
@@ -44,16 +47,25 @@ class GameFragment : Fragment() {
         binding.answer1Button.setOnClickListener {
             selection = 0
             evaluateAns(0)
+            binding.answer1Button.isEnabled = false
+            binding.answer2Button.isEnabled = false
+            binding.answer3Button.isEnabled = false
         }
 
         binding.answer2Button.setOnClickListener {
             selection = 1
             evaluateAns(1)
+            binding.answer1Button.isEnabled = false
+            binding.answer2Button.isEnabled = false
+            binding.answer3Button.isEnabled = false
         }
 
         binding.answer3Button.setOnClickListener {
             selection = 2
             evaluateAns(2)
+            binding.answer1Button.isEnabled = false
+            binding.answer2Button.isEnabled = false
+            binding.answer3Button.isEnabled = false
         }
         return binding.root
     }
@@ -64,10 +76,15 @@ class GameFragment : Fragment() {
             if (localAnswers.isNotEmpty()) {
                 if (localAnswers.last()) {
                     binding.correctSignImageView.setImageResource(R.drawable.correct_sign)
+                    binding.correctTextView.text = getText(R.string.correct_answer)
+
                 }
                 else {
-                    binding.correctSignImageView.setImageResource(R.drawable.incorrect_sign)
+                    binding.correctSignImageView.setImageResource(R.drawable.incorrect_sign_new)
+                    binding.correctTextView.text = getText(R.string.incorrect_answer)
                 }
+                binding.correctSignImageView.visibility = View.VISIBLE
+                binding.correctTextView.visibility = View.VISIBLE
 
 //                val correctAnswers = localAnswers.filter { it }.size
 //                binding.showResultsButton.visibility = if (done) View.VISIBLE else View.INVISIBLE
@@ -79,8 +96,8 @@ class GameFragment : Fragment() {
             val done = (localAnswers.size > Game.NUM_QUESTIONS - 1)
             binding.nextQuestionButton.visibility = if (done) View.INVISIBLE else View.VISIBLE
 
+
             binding.nextQuestionButton.setOnClickListener {
-                Log.d(TAG, "hello")
                 viewModel.newQuestion()
                 it.findNavController().navigate(R.id.action_gameFragment_self)
             }
