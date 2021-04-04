@@ -17,6 +17,8 @@ import androidx.navigation.navGraphViewModels
 import com.anguy39.movieguess.R
 import com.anguy39.movieguess.databinding.FragmentGameBinding
 import com.anguy39.movieguess.model.Game
+import java.util.*
+import kotlin.concurrent.schedule
 
 private const val TAG = "GameFragment"
 class GameFragment : Fragment() {
@@ -91,11 +93,16 @@ class GameFragment : Fragment() {
                 }
                 binding.correctSignImageView.visibility = View.VISIBLE
                 binding.correctTextView.visibility = View.VISIBLE
+                evaluateAnimation()
+//                Timer("SettingUp", false).schedule(WIN_ANIM_DURATION+100) {
+//                    binding.nextQuestionButton.isEnabled = true
+//                    binding.gameOverButton.isEnabled = true
+//                }
+//
 
                 binding.nextQuestionButton.setOnClickListener {
                     viewModel.newQuestion()
                     it.findNavController().navigate(R.id.action_gameFragment_self2)
-
                 }
                 simulateGameOver()
             }
@@ -110,12 +117,15 @@ class GameFragment : Fragment() {
             val actionResults = GameFragmentDirections.actionGameFragmentToResultsFragment()
             actionResults.correctAnswers = correctAnswers
             actionResults.numAnswers = localAnswers.size
-            Navigation.findNavController(binding.root).navigate(actionResults)
+            Timer("SettingUp", false).schedule(WIN_ANIM_DURATION+100) {
+                Navigation.findNavController(binding.root).navigate(actionResults)
+            }
+
         }
 
     }
 
-    fun answerAnimation (answerChoice: Button) {
+    private fun answerAnimation (answerChoice: Button) {
         val animatorAnswer = ValueAnimator.ofFloat(-800f, 0f)
         animatorAnswer.addUpdateListener {
             answerChoice.setTranslationX(it.animatedValue as Float)
@@ -124,6 +134,20 @@ class GameFragment : Fragment() {
         animatorAnswer.interpolator = LinearInterpolator()
         animatorAnswer.duration = ANSWER_MOVE_DURATION
         animatorAnswer.start()
+    }
+
+    private fun evaluateAnimation() {
+        val animatorSign = ValueAnimator.ofFloat(0f, 1f)
+        animatorSign.addUpdateListener {
+            val value = it.animatedValue as Float
+            binding.correctSignImageView.alpha = value
+        }
+
+        animatorSign.interpolator = LinearInterpolator()
+        animatorSign.duration = WIN_ANIM_DURATION
+        animatorSign.start()
+//        binding.nextQuestionButton.isEnabled = false
+//        binding.gameOverButton.isEnabled = false
     }
 
 
@@ -141,7 +165,7 @@ class GameFragment : Fragment() {
 
     companion object {
         const val ANSWER_MOVE_DURATION = 600L
-        const val CARD_FLIP_DURATION = 500L
+        const val WIN_ANIM_DURATION = 1000L
     }
 
 }
