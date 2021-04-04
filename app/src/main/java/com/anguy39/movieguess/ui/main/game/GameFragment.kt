@@ -29,7 +29,6 @@ class GameFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_game, container, false)
         binding.run {
             vm = viewModel
@@ -85,24 +84,26 @@ class GameFragment : Fragment() {
                 binding.correctSignImageView.visibility = View.VISIBLE
                 binding.correctTextView.visibility = View.VISIBLE
 
-                val correctAnswers = localAnswers.filter { it }.size
+
                 var done = (localAnswers.size > Game.NUM_QUESTIONS - 1)
 
-                binding.gameOverButton.setOnClickListener { done = true }
-
-                if (done) {
-                    binding.nextQuestionButton.text = getText(R.string.show_results)
+                binding.gameOverButton.setOnClickListener {
+                    val correctAnswers = localAnswers.filter { it }.size
+                    val actionResults = GameFragmentDirections.actionGameFragmentToResultsFragment(correctAnswers, localAnswers.size)
+                    Navigation.findNavController(binding.root).navigate(actionResults)
                 }
 
+                if (done) {
+                    val correctAnswers = localAnswers.filter { it }.size
+                    val actionResults = GameFragmentDirections.actionGameFragmentToResultsFragment(correctAnswers, localAnswers.size)
+                    Navigation.findNavController(binding.root).navigate(actionResults)
+                }
+
+
                 binding.nextQuestionButton.setOnClickListener {
-                    if (done) {
-                        val actionResults = GameFragmentDirections.actionGameFragmentToResultsFragment(correctAnswers, localAnswers.size)
-                        Navigation.findNavController(binding.root).navigate(actionResults)
-                    }
-                    else {
-                        viewModel.newQuestion()
-                        it.findNavController().navigate(R.id.action_gameFragment_self2)
-                    }
+                    viewModel.newQuestion()
+                    it.findNavController().navigate(R.id.action_gameFragment_self2)
+
 
                 }
             }
@@ -111,7 +112,6 @@ class GameFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         viewModel.answers.observe(viewLifecycleOwner, {
             localAnswers = it
         })
