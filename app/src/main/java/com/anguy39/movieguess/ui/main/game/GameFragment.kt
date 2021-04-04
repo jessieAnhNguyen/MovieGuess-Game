@@ -1,11 +1,14 @@
 package com.anguy39.movieguess.ui.main.game
 
+import android.animation.ValueAnimator
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.LinearInterpolator
+import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
 import androidx.navigation.Navigation
@@ -40,6 +43,10 @@ class GameFragment : Fragment() {
         binding.gameOverButton.setOnClickListener {
             it.findNavController().navigate(R.id.action_gameFragment_to_resultsFragment)
         }
+
+        answerAnimation(binding.answer1Button)
+        answerAnimation(binding.answer2Button)
+        answerAnimation(binding.answer3Button)
 
         binding.answer1Button.setOnClickListener {
             selection = 0
@@ -116,6 +123,17 @@ class GameFragment : Fragment() {
         }
     }
 
+    fun answerAnimation (answerChoice: Button) {
+        val animatorAnswer = ValueAnimator.ofFloat(-800f, 0f)
+        animatorAnswer.addUpdateListener {
+            answerChoice.setTranslationX(it.animatedValue as Float)
+
+        }
+        animatorAnswer.interpolator = LinearInterpolator()
+        animatorAnswer.duration = ANSWER_MOVE_DURATION
+        animatorAnswer.start()
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.answers.observe(viewLifecycleOwner, {
@@ -126,6 +144,11 @@ class GameFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val ANSWER_MOVE_DURATION = 600L
+        const val CARD_FLIP_DURATION = 500L
     }
 
 }
