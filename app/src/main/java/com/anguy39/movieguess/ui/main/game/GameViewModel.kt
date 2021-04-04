@@ -19,6 +19,9 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     private var _answers = MutableLiveData<BooleanArray>()
     var answers: LiveData<BooleanArray> = _answers
 
+    private var _characters = MutableLiveData<List<String>>(listOf("Olaf", "Maleficent", "Cinderella"))
+    var characters: LiveData<List<String>> = _characters
+
     init {
         val jsonString = app.assets.open("quiz.json").bufferedReader().use { it.readText() }
         game = Game(jsonString)
