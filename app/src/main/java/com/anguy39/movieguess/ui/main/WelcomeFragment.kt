@@ -73,7 +73,7 @@ class WelcomeFragment : Fragment() {
     }
 
     companion object {
-        const val MICKEY_ROTATE_DURATION = 1000L
+        const val MICKEY_ROTATE_DURATION = 800L
     }
 
 

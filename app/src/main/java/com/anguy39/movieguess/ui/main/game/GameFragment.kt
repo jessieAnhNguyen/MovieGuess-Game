@@ -28,6 +28,7 @@ class GameFragment : Fragment() {
 
     private var localAnswers = booleanArrayOf()
     private var selection = -1
+    private var done = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -41,8 +42,10 @@ class GameFragment : Fragment() {
         binding.correctTextView.visibility = View.INVISIBLE
 
         binding.gameOverButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_gameFragment_to_resultsFragment)
+            done = true
+            simulateGameOver()
         }
+
 
         answerAnimation(binding.answer1Button)
         answerAnimation(binding.answer2Button)
@@ -81,7 +84,6 @@ class GameFragment : Fragment() {
                 if (localAnswers.last()) {
                     binding.correctSignImageView.setImageResource(R.drawable.correct_sign)
                     binding.correctTextView.text = getText(R.string.correct_answer)
-
                 }
                 else {
                     binding.correctSignImageView.setImageResource(R.drawable.incorrect_sign_new)
@@ -90,37 +92,27 @@ class GameFragment : Fragment() {
                 binding.correctSignImageView.visibility = View.VISIBLE
                 binding.correctTextView.visibility = View.VISIBLE
 
-
-                var done = (localAnswers.size > Game.NUM_QUESTIONS - 1)
-                val correctAnswers = localAnswers.filter { it }.size
-
-                binding.gameOverButton.setOnClickListener {
-                    val actionResults = GameFragmentDirections.actionGameFragmentToResultsFragment()
-                    actionResults.correctAnswers= correctAnswers
-                    actionResults.numAnswers = localAnswers.size
-//                    actionResults.character = viewModel.getCharacter()
-//                    Log.d(TAG, "Get character in Game: character is " + viewModel.getCharacter())
-                    Navigation.findNavController(it).navigate(actionResults)
-                }
-
-                if (done) {
-                    val actionResults = GameFragmentDirections.actionGameFragmentToResultsFragment()
-                    actionResults.correctAnswers = correctAnswers
-                    actionResults.numAnswers = localAnswers.size
-//                    actionResults.character = viewModel.getCharacter()
-//                    Log.d(TAG, "Get character in Game: character is " + viewModel.getCharacter())
-                    Navigation.findNavController(binding.root).navigate(actionResults)
-                }
-
-
                 binding.nextQuestionButton.setOnClickListener {
                     viewModel.newQuestion()
                     it.findNavController().navigate(R.id.action_gameFragment_self2)
 
-
                 }
+                simulateGameOver()
             }
         }
+    }
+
+    fun simulateGameOver() {
+        if (!done) done = (localAnswers.size > Game.NUM_QUESTIONS - 1)
+        val correctAnswers = localAnswers.filter { it }.size
+
+        if (done) {
+            val actionResults = GameFragmentDirections.actionGameFragmentToResultsFragment()
+            actionResults.correctAnswers = correctAnswers
+            actionResults.numAnswers = localAnswers.size
+            Navigation.findNavController(binding.root).navigate(actionResults)
+        }
+
     }
 
     fun answerAnimation (answerChoice: Button) {
