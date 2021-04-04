@@ -86,13 +86,7 @@ class GameFragment : Fragment() {
                 binding.correctTextView.visibility = View.VISIBLE
 
                 val correctAnswers = localAnswers.filter { it }.size
-//                binding.showResultsButton.visibility = if (done) View.VISIBLE else View.INVISIBLE
-//                binding.showResultsButton.setOnClickListener {
-//                    val actionResults = EvalFragmentDirections.actionEvalFragmentToResultsFragment(correctAnswers, answers.size)
-//                    Navigation.findNavController(view).navigate(actionResults)
-//                }
                 var done = (localAnswers.size > Game.NUM_QUESTIONS - 1)
-//                binding.nextQuestionButton.visibility = if (done) View.INVISIBLE else View.VISIBLE
 
                 binding.gameOverButton.setOnClickListener { done = true }
 

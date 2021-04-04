@@ -27,6 +27,19 @@ class ResultsFragment : Fragment() {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        arguments?.let {
+            val safeArgs = ResultsFragmentArgs.fromBundle(it)
+            val numAnswers = safeArgs.numAnswers
+            val correctAnswers = safeArgs.correctAnswers
+
+            binding.correctAnswerTextView.text = correctAnswers.toString()
+            binding.wrongAnswerTextView.text = (numAnswers - correctAnswers).toString()
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
