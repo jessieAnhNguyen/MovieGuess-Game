@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -40,10 +41,6 @@ class ConfigFragment : Fragment() {
         }
 
         binding.configRecyclerView.layoutManager = LinearLayoutManager(context)
-
-        binding.startGameButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_configFragment_to_gameFragment)
-        }
 
         return binding.root
 
@@ -77,6 +74,7 @@ class ConfigFragment : Fragment() {
             configLevel = level
             sharedViewModel.newGame()
             Log.d(TAG, "call new game!")
+            binding.root.findNavController().navigate(R.id.action_configFragment_to_gameFragment)
 //            Log.d(TAG, "level is " + sharedViewModel.level)
         }
 
