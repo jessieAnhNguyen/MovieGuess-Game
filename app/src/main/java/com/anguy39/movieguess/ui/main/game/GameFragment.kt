@@ -128,9 +128,11 @@ class GameFragment : Fragment() {
                 Navigation.findNavController(binding.root).navigate(actionResults)
             }
             localAnswers = booleanArrayOf()
+            done = false
             Log.d(TAG, "array size" + localAnswers.size)
             Log.d(TAG, "array" + localAnswers.toString())
         }
+        done = false
 
     }
 
