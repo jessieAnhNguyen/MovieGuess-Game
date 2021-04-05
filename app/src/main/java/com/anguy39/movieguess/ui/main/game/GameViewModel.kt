@@ -15,6 +15,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
 
     private lateinit var game: Game
 
+
     private var _question = MutableLiveData<String>()
     var question: LiveData<String> = _question
 
@@ -53,7 +54,9 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
         val hardLevel = Level(2, "Hard")
         _levelList.value = listOf(easyLevel, mediumLevel, hardLevel)
 
-//        _level.value = ConfigFragment.configLevel
+        _level.value = ConfigFragment.configLevel
+
+        Log.d(TAG, "In init, the level is " + _level.value?.LevelId)
 
         jsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
         newGame()
@@ -73,12 +76,16 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     fun newGame() {
         Log.d(TAG, "Initialize new game ...")
         this.game = Game(jsonString, _level.value!!)
+
         Log.d(TAG, "new level is " + _level.value?.LevelId)
+
+        Log.d(TAG, "First game is " + this.game)
         newQuestion()
     }
 
     fun newQuestion() {
         Log.d(TAG, "game level is " + _level.value?.LevelId)
+        Log.d(TAG, "Then game is " + game)
         game.newQuestion()
         _question.value = game.currentQuestion.question
         _solutions.value = game.solutions

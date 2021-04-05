@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MovieGuess</string>
+    <string name="begin_game">Jouons!</string>
+    <string name="instruction_welcome">Dans ce jeu, vous devrez deviner de quel film Disney est la photo</string>
+    <string name="settings_welcome">Paramètres</string>
+    <string name="settings_title">Choisissez vos paramètres</string>
+    <string name="theme_color">Couleur du thème</string>
+    <string name="game_character">Personnage de jeu</string>
+    <string name="config">Configuration</string>
+    <string name="difficult_level">Choisissez le niveau de difficulté</string>
+    <string name="game_over">Jeu terminé!</string>
+    <string name="your_results">Vos résultats</string>
+    <string name="correct_answers">Réponses correctes</string>
+    <string name="wrong_answer">Mauvaises réponses</string>
+    <string name="play_again">Rejouer!</string>
+    <string name="start_game">Démarrer jeu</string>
+    <string name="back_to_welcome">Enregistrer les paramètres</string>
+    <string name="next_question">Suivante</string>
+    <string name="correct_answer">Correct!</string>
+    <string name="incorrect_answer">Incorrect</string>
+    <string name="show_results">Résultats</string>
+    <string name="olaf_result">Résultats d\'Olaf</string>
+    <string name="maleficent_result">Résultats de Maléfique</string>
+    <string name="cinderella_result">Résultats de Cendrillon</string>
+</resources>

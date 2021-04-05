@@ -171,6 +171,7 @@ class GameFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        Log.d(TAG, "Well, not destroyed.")
         _binding = null
     }
 

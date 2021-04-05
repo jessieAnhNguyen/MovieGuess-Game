@@ -2,7 +2,7 @@
     <string name="app_name">MovieGuess</string>
     <string name="begin_game">Let\'s Play!</string>
     <string name="instruction_welcome">In this game, you will have to guess which Disney movie is the picture from</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="settings_welcome">Settings</string>
     <string name="settings_title">Choose your settings</string>
     <string name="theme_color">Theme Color</string>

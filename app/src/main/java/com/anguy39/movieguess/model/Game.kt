@@ -33,6 +33,8 @@ class Game (jsonString: String, level: Level) {
 
         var currLevel = gameLevels[0]
         Log.d(TAG, "hello: level is " + level)
+
+        Log.d(TAG, "AAAAAAHHH why is this being created")
         for (i in 0 until gameLevels.size) {
             if (gameLevels[i].level == matchLevel(level.LevelId)) {
                 currLevel = gameLevels[i]
