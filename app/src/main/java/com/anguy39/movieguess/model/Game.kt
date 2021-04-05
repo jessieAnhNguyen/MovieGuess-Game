@@ -25,10 +25,11 @@ class Game (jsonString: String, level: Level) {
     val answers: MutableList<Boolean> = mutableListOf()
 
     var character = 0
+    val gson = Gson()
 //    var level = 0
 
     init {
-        val gson = Gson()
+
         gameLevels = gson.fromJson(jsonString, GameLevels::class.java)
 
         var currLevel = gameLevels[0]
@@ -61,7 +62,9 @@ class Game (jsonString: String, level: Level) {
 
 
     fun newQuestion() {
+        Log.d(TAG, "ARRAY SIZE = " + answers.size)
         if (answers.size < NUM_QUESTIONS) {
+            Log.d(TAG, "not new answer here")
             currentQuestionIndex = Random.nextInt(questions.size)
             currentQuestion = questions[currentQuestionIndex]
             val temp = currentQuestion.solutions.toMutableList().apply {
@@ -70,6 +73,7 @@ class Game (jsonString: String, level: Level) {
             solutions = temp
         } else {
             // start new game
+            Log.d(TAG, "clear answers here")
             answers.clear()
         }
     }
@@ -90,6 +94,22 @@ class Game (jsonString: String, level: Level) {
         }
         return ""
     }
+
+//    fun resetGame () {
+//        gameLevels = gson.fromJson(jsonString, GameLevels::class.java)
+//
+//        var currLevel = gameLevels[0]
+//        Log.d(TAG, "hello: level is " + level)
+//
+//        Log.d(TAG, "AAAAAAHHH why is this being created")
+//        for (i in 0 until gameLevels.size) {
+//            if (gameLevels[i].level == matchLevel(level.LevelId)) {
+//                currLevel = gameLevels[i]
+//                break
+//            }
+//        }
+//        questions = currLevel.list
+//    }
 
     companion object {
         const val NUM_QUESTIONS = 4

@@ -171,13 +171,13 @@ class GameFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.d(TAG, "Well, not destroyed.")
+//        Log.d(TAG, "Well, not destroyed.")
         _binding = null
     }
 
     companion object {
         const val ANSWER_MOVE_DURATION = 700L
-        const val WIN_ANIM_DURATION = 800L
+        const val WIN_ANIM_DURATION = 500L
     }
 
 }
