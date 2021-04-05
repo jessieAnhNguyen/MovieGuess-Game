@@ -27,25 +27,49 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     private var _character = MutableLiveData<Int>()
     var character: LiveData<Int> = _character
 
-    private var level = 0
+    lateinit var level: Level
 
     private val _levelList = MutableLiveData<List<Level>>()
     var levelList: LiveData<List<Level>> = _levelList
 
     data class Level (val LevelId: Int, var levelName: String)
 
+    private var easyJsonString = ""
+    private var mediumJsonString = ""
+    private var hardJsonString = ""
+
     init {
-        val jsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
-        game = Game(jsonString)
-//        game.questions
-        newQuestion()
+        easyJsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
+        mediumJsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
+        hardJsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
 
         val easyLevel = Level(0, "Easy")
         val mediumLevel = Level(1, "Medium")
         val hardLevel = Level(2, "Hard")
         _levelList.value = listOf(easyLevel, mediumLevel, hardLevel)
 
-        Log.d(TAG, "level is " + level)
+
+        if (!this::level.isInitialized) {
+            Log.d(TAG, "hello")
+            level = easyLevel
+            newGame()
+        }
+    }
+
+    fun newLevel():String {
+        when (level.LevelId) {
+            0 -> return easyJsonString
+            1 -> return mediumJsonString
+            2 -> return hardJsonString
+        }
+        return easyJsonString
+    }
+
+    fun newGame() {
+        val jsonString = newLevel()
+        Log.d(TAG, "current level is " + level)
+        game = Game(jsonString)
+        newQuestion()
     }
 
     fun newQuestion() {
@@ -75,9 +99,5 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
 
     fun getCurrentQuestion(): Int {
         return game.getCurrentQuestion()
-    }
-
-    fun setLevel(level: Int) {
-        this.level = level
     }
 }

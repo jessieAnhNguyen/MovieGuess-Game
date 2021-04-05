@@ -1,6 +1,7 @@
 package com.anguy39.movieguess.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +20,7 @@ import com.anguy39.movieguess.databinding.FragmentConfigBinding
 import com.anguy39.movieguess.databinding.FragmentWelcomeBinding
 import com.anguy39.movieguess.ui.main.game.GameViewModel
 
-
+private const val TAG = "ConfigFragment"
 class ConfigFragment : Fragment() {
 
     private var _binding: FragmentConfigBinding? = null
@@ -61,6 +62,7 @@ class ConfigFragment : Fragment() {
     private inner class LevelViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
         private val levelNameTextView: TextView = itemView.findViewById(R.id.level_textView)
+        private var cardItem: CardView = view.findViewById(R.id.item_cardView)
 
         private lateinit var level: GameViewModel.Level
 
@@ -69,8 +71,10 @@ class ConfigFragment : Fragment() {
         }
 
         override fun onClick(v: View?) {
-            val levelSelected = level.LevelId
-            sharedViewModel.setLevel(levelSelected)
+            cardItem.setCardBackgroundColor(android.graphics.Color.parseColor("#14a5c9"))
+            sharedViewModel.level = level
+            sharedViewModel.newGame()
+//            Log.d(TAG, "level is " + sharedViewModel.level)
         }
 
         fun bind(level: GameViewModel.Level) {
