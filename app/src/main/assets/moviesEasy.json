@@ -16,7 +16,7 @@
       },
       {
         "question" : "@drawable/lionking_level1",
-        "solutions" : ["Madagasca", "Bambi", "Lion King"]
+        "solutions" : ["Madagascar", "Bambi", "Lion King"]
       },
       {
         "question" : "@drawable/olaf_level1",
@@ -36,32 +36,32 @@
     "level" : "medium",
     "list" : [
       {
-        "question" : "@drawable/buzz_level1",
-        "solutions" : ["Brave", "Up", "Toy Story"]
+        "question" : "@drawable/coco_level2",
+        "solutions" : ["Tangled", "Up", "Coco"]
       },
       {
-        "question" : "@drawable/hercules_level1",
-        "solutions" : ["Sleeping Beauty", "Beauty and the Beast", "Hercules"]
+        "question" : "@drawable/coco2_level2",
+        "solutions" : ["Sleeping Beauty", "Tangled", "Coco"]
       },
       {
-        "question" : "@drawable/ice_age_level1",
-        "solutions" : ["The Croods", "Frozen", "Ice Age"]
+        "question" : "@drawable/findingnemo_level2",
+        "solutions" : ["Zootopia", "Frozen", "Finding Nemo"]
       },
       {
-        "question" : "@drawable/lionking_level1",
-        "solutions" : ["Madagasca", "Bambi", "Lion King"]
+        "question" : "@drawable/incredibles_level2",
+        "solutions" : ["Up", "Frozen", "The Incredibles"]
       },
       {
-        "question" : "@drawable/olaf_level1",
-        "solutions" : ["Snow White", "Bambi", "Frozen"]
+        "question" : "@drawable/tangled_horse_level2",
+        "solutions" : ["Beauty and the Beast", "Zootopia", "Tangled"]
       },
       {
-        "question" : "@drawable/tangled_level1",
-        "solutions" : ["Toy Story", "Beauty and the Beast", "Tangled"]
+        "question" : "@drawable/toystory_level2",
+        "solutions" : ["Coco", "Up", "Toy Story"]
       },
       {
-        "question" : "@drawable/up_level1",
-        "solutions" : ["Tangled", "Toy Story", "Up"]
+        "question" : "@drawable/zootopia_level2",
+        "solutions" : ["Madagascar", "Toy Story", "Zootopia"]
       }
     ]
   },
@@ -69,32 +69,32 @@
     "level" : "hard",
     "list" : [
       {
-        "question" : "@drawable/buzz_level1",
-        "solutions" : ["Brave", "Up", "Toy Story"]
+        "question" : "@drawable/bambi_level3",
+        "solutions" : ["Brave", "Beauty and The Beast", "Bambi"]
       },
       {
-        "question" : "@drawable/hercules_level1",
-        "solutions" : ["Sleeping Beauty", "Beauty and the Beast", "Hercules"]
+        "question" : "@drawable/findingdory_level3",
+        "solutions" : ["Zootopia", "Madagascar", "Finding Dory"]
       },
       {
-        "question" : "@drawable/ice_age_level1",
-        "solutions" : ["The Croods", "Frozen", "Ice Age"]
+        "question" : "@drawable/insideout_level3",
+        "solutions" : ["Coco", "Toy Story", "Inside Out"]
       },
       {
-        "question" : "@drawable/lionking_level1",
-        "solutions" : ["Madagasca", "Bambi", "Lion King"]
+        "question" : "@drawable/moana_level3",
+        "solutions" : ["Coco", "Bambi", "Moana"]
       },
       {
-        "question" : "@drawable/olaf_level1",
-        "solutions" : ["Snow White", "Bambi", "Frozen"]
+        "question" : "@drawable/monster_university_level3",
+        "solutions" : ["Finding Dory", "Zootopia", "Monster University"]
       },
       {
-        "question" : "@drawable/tangled_level1",
-        "solutions" : ["Toy Story", "Beauty and the Beast", "Tangled"]
+        "question" : "@drawable/ralph_level3",
+        "solutions" : ["Toy Story", "Beauty and the Beast", "Ralph"]
       },
       {
-        "question" : "@drawable/up_level1",
-        "solutions" : ["Tangled", "Toy Story", "Up"]
+        "question" : "@drawable/thecroods_level3",
+        "solutions" : ["Tangled", "Bambi", "The Croods"]
       }
     ]
   }
