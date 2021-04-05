@@ -27,11 +27,25 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     private var _character = MutableLiveData<Int>()
     var character: LiveData<Int> = _character
 
+    private var level = 0
+
+    private val _levelList = MutableLiveData<List<Level>>()
+    var levelList: LiveData<List<Level>> = _levelList
+
+    data class Level (val LevelId: Int, var levelName: String)
+
     init {
         val jsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
         game = Game(jsonString)
 //        game.questions
         newQuestion()
+
+        val easyLevel = Level(0, "Easy")
+        val mediumLevel = Level(1, "Medium")
+        val hardLevel = Level(2, "Hard")
+        _levelList.value = listOf(easyLevel, mediumLevel, hardLevel)
+
+        Log.d(TAG, "level is " + level)
     }
 
     fun newQuestion() {
@@ -61,5 +75,9 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
 
     fun getCurrentQuestion(): Int {
         return game.getCurrentQuestion()
+    }
+
+    fun setLevel(level: Int) {
+        this.level = level
     }
 }
