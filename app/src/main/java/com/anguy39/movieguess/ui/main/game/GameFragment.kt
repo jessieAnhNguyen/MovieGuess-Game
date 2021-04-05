@@ -3,13 +3,13 @@ package com.anguy39.movieguess.ui.main.game
 import android.animation.ValueAnimator
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
 import android.widget.Button
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -19,6 +19,7 @@ import com.anguy39.movieguess.databinding.FragmentGameBinding
 import com.anguy39.movieguess.model.Game
 import java.util.*
 import kotlin.concurrent.schedule
+
 
 private const val TAG = "GameFragment"
 class GameFragment : Fragment() {
@@ -47,6 +48,12 @@ class GameFragment : Fragment() {
             done = true
             simulateGameOver()
         }
+
+        val uri = viewModel.getQuestionImage(viewModel.getCurrentQuestion())
+        val imageResource = resources.getIdentifier(uri, null, "com.anguy39.movieguess")
+        val res = resources.getDrawable(imageResource)
+
+        binding.questionImageView.setImageDrawable(res);
 
 
         answerAnimation(binding.answer1Button)
@@ -120,7 +127,9 @@ class GameFragment : Fragment() {
             Timer("SettingUp", false).schedule(WIN_ANIM_DURATION+100) {
                 Navigation.findNavController(binding.root).navigate(actionResults)
             }
-
+            localAnswers = booleanArrayOf()
+            Log.d(TAG, "array size" + localAnswers.size)
+            Log.d(TAG, "array" + localAnswers.toString())
         }
 
     }

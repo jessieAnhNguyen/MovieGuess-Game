@@ -30,6 +30,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     init {
         val jsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
         game = Game(jsonString)
+//        game.questions
         newQuestion()
     }
 
@@ -51,5 +52,14 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
 
     fun getCharacter() : Int {
         return game.character
+    }
+
+    fun getQuestionImage(imgIndex: Int): String {
+        var questionList = game.getQuestionList()
+        return questionList[imgIndex].question
+    }
+
+    fun getCurrentQuestion(): Int {
+        return game.getCurrentQuestion()
     }
 }

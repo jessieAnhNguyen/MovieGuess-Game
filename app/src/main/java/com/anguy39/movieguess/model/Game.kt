@@ -14,6 +14,7 @@ class Game (jsonString: String) {
     private var questions = ArrayList<Question>()
 
     lateinit var currentQuestion: Question
+    var currentQuestionIndex = 0
     lateinit var solutions: List<String>
     val answers: MutableList<Boolean> = mutableListOf()
 
@@ -22,7 +23,7 @@ class Game (jsonString: String) {
     init {
         val gson = Gson()
         questions = gson.fromJson(jsonString, Questions::class.java)
-//        Log.d("Questions: ", questions.toString())
+        Log.d("Questions: ", questions.toString())
     }
 
     fun answer(answer: Int) {
@@ -37,7 +38,8 @@ class Game (jsonString: String) {
 
     fun newQuestion() {
         if (answers.size < NUM_QUESTIONS) {
-            currentQuestion = questions[Random.nextInt(questions.size)]
+            currentQuestionIndex = Random.nextInt(questions.size)
+            currentQuestion = questions[currentQuestionIndex]
             val temp = currentQuestion.solutions.toMutableList().apply {
                 shuffle()
             }
@@ -46,6 +48,14 @@ class Game (jsonString: String) {
             // start new game
             answers.clear()
         }
+    }
+
+    fun getQuestionList(): ArrayList<Question> {
+        return questions
+    }
+
+    fun getCurrentQuestion(): Int {
+        return currentQuestionIndex
     }
 
     companion object {
