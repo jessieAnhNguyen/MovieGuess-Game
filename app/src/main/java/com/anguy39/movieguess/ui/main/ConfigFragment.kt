@@ -73,7 +73,8 @@ class ConfigFragment : Fragment() {
         override fun onClick(v: View?) {
             cardItem.setCardBackgroundColor(android.graphics.Color.parseColor("#14a5c9"))
             sharedViewModel.level = level
-            sharedViewModel.newGame()
+//            sharedViewModel.newGame()
+            configLevel = level
 //            Log.d(TAG, "level is " + sharedViewModel.level)
         }
 
@@ -101,6 +102,10 @@ class ConfigFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        var configLevel = GameViewModel.Level(0, "Easy")
     }
 
 

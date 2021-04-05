@@ -6,6 +6,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.anguy39.movieguess.model.Game
+import com.anguy39.movieguess.ui.main.ConfigFragment
+import com.anguy39.movieguess.ui.main.SettingsFragment
 
 private const val TAG = "GameViewModel"
 class GameViewModel(app: Application) : AndroidViewModel(app) {
@@ -39,38 +41,39 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     private var hardJsonString = ""
 
     init {
-        easyJsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
-        mediumJsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
-        hardJsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
+//        easyJsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
+//        mediumJsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
+//        hardJsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
 
         val easyLevel = Level(0, "Easy")
         val mediumLevel = Level(1, "Medium")
         val hardLevel = Level(2, "Hard")
         _levelList.value = listOf(easyLevel, mediumLevel, hardLevel)
 
+        level = ConfigFragment.configLevel
 
-        if (!this::level.isInitialized) {
-            Log.d(TAG, "hello")
-            level = easyLevel
-            newGame()
-        }
-    }
-
-    fun newLevel():String {
-        when (level.LevelId) {
-            0 -> return easyJsonString
-            1 -> return mediumJsonString
-            2 -> return hardJsonString
-        }
-        return easyJsonString
-    }
-
-    fun newGame() {
-        val jsonString = newLevel()
+        val jsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
         Log.d(TAG, "current level is " + level)
-        game = Game(jsonString)
+        game = Game(jsonString, level.LevelId)
         newQuestion()
+        Log.d(TAG, "initialize new game ...")
     }
+
+//    fun newLevel():String {
+//        when (level.LevelId) {
+//            0 -> return easyJsonString
+//            1 -> return mediumJsonString
+//            2 -> return hardJsonString
+//        }
+//        return easyJsonString
+//    }
+
+//    fun newGame() {
+//        val jsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
+//        Log.d(TAG, "current level is " + level)
+//        game = Game(jsonString, level.LevelId)
+//        newQuestion()
+//    }
 
     fun newQuestion() {
         game.newQuestion()

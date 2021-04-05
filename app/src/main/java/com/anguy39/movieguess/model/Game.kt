@@ -7,11 +7,15 @@ import kotlin.random.Random
 private const val TAG = "Game"
 
 data class Question(val question: String, val solutions: List<String>)
+data class GameLevel(val level: String, val list: Questions)
 
 class Questions : ArrayList<Question>()
+class GameLevels: ArrayList<GameLevel>()
 
-class Game (jsonString: String) {
+class Game (jsonString: String, level: Int) {
     private var questions = ArrayList<Question>()
+
+    lateinit var gameLevels: ArrayList<GameLevel>
 
     lateinit var currentQuestion: Question
     var currentQuestionIndex = 0
@@ -22,7 +26,16 @@ class Game (jsonString: String) {
 
     init {
         val gson = Gson()
-        questions = gson.fromJson(jsonString, Questions::class.java)
+        gameLevels = gson.fromJson(jsonString, GameLevels::class.java)
+
+        var currLevel = gameLevels[0]
+        for (i in 0 until gameLevels.size) {
+            if (gameLevels[i].level == matchLevel(level)) {
+                currLevel = gameLevels[i]
+                break
+            }
+        }
+        questions = currLevel.list
         Log.d("Questions: ", questions.toString())
     }
 
@@ -56,6 +69,15 @@ class Game (jsonString: String) {
 
     fun getCurrentQuestion(): Int {
         return currentQuestionIndex
+    }
+
+    fun matchLevel (level: Int): String {
+        when (level) {
+            0 -> return "easy"
+            1 -> return "medium"
+            2 -> return "hard"
+        }
+        return ""
     }
 
     companion object {
