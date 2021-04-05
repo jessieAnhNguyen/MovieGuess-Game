@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.anguy39.movieguess.R
 import com.anguy39.movieguess.databinding.FragmentConfigBinding
 import com.anguy39.movieguess.databinding.FragmentWelcomeBinding
+import com.anguy39.movieguess.model.Level
 import com.anguy39.movieguess.ui.main.game.GameViewModel
 
 private const val TAG = "ConfigFragment"
@@ -64,7 +65,7 @@ class ConfigFragment : Fragment() {
         private val levelNameTextView: TextView = itemView.findViewById(R.id.level_textView)
         private var cardItem: CardView = view.findViewById(R.id.item_cardView)
 
-        private lateinit var level: GameViewModel.Level
+        private lateinit var level: Level
 
         init {
             itemView.setOnClickListener(this)
@@ -72,19 +73,20 @@ class ConfigFragment : Fragment() {
 
         override fun onClick(v: View?) {
             cardItem.setCardBackgroundColor(android.graphics.Color.parseColor("#14a5c9"))
-            sharedViewModel.level = level
-//            sharedViewModel.newGame()
+            sharedViewModel.updateLevel(level)
             configLevel = level
+            sharedViewModel.newGame()
+            Log.d(TAG, "call new game!")
 //            Log.d(TAG, "level is " + sharedViewModel.level)
         }
 
-        fun bind(level: GameViewModel.Level) {
+        fun bind(level: Level) {
             this.level = level
             levelNameTextView.text = level.levelName
         }
     }
 
-    private inner class LevelAdapter(private val list: List<GameViewModel.Level>) : RecyclerView.Adapter<LevelViewHolder>() {
+    private inner class LevelAdapter(private val list: List<Level>) : RecyclerView.Adapter<LevelViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LevelViewHolder {
             val view = layoutInflater.inflate(R.layout.recycler_item, parent, false)
@@ -105,7 +107,7 @@ class ConfigFragment : Fragment() {
     }
 
     companion object {
-        var configLevel = GameViewModel.Level(0, "Easy")
+        var configLevel = Level(0, "Easy")
     }
 
 

@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.anguy39.movieguess.model.Game
+import com.anguy39.movieguess.model.Level
 import com.anguy39.movieguess.ui.main.ConfigFragment
 import com.anguy39.movieguess.ui.main.SettingsFragment
 
@@ -29,16 +30,18 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     private var _character = MutableLiveData<Int>()
     var character: LiveData<Int> = _character
 
-    lateinit var level: Level
+    private var _level = MutableLiveData<Level>()
+    var level: LiveData<Level> = _level
 
     private val _levelList = MutableLiveData<List<Level>>()
     var levelList: LiveData<List<Level>> = _levelList
 
-    data class Level (val LevelId: Int, var levelName: String)
 
     private var easyJsonString = ""
     private var mediumJsonString = ""
     private var hardJsonString = ""
+
+    private var jsonString = ""
 
     init {
 //        easyJsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
@@ -50,13 +53,12 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
         val hardLevel = Level(2, "Hard")
         _levelList.value = listOf(easyLevel, mediumLevel, hardLevel)
 
-        level = ConfigFragment.configLevel
+//        _level.value = ConfigFragment.configLevel
 
-        val jsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
-        Log.d(TAG, "current level is " + level)
-        game = Game(jsonString, level.LevelId)
-        newQuestion()
-        Log.d(TAG, "initialize new game ...")
+        jsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
+        newGame()
+//        Log.d(TAG, "current level is " + game.level)
+
     }
 
 //    fun newLevel():String {
@@ -68,17 +70,19 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
 //        return easyJsonString
 //    }
 
-//    fun newGame() {
-//        val jsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
-//        Log.d(TAG, "current level is " + level)
-//        game = Game(jsonString, level.LevelId)
-//        newQuestion()
-//    }
+    fun newGame() {
+        Log.d(TAG, "Initialize new game ...")
+        this.game = Game(jsonString, _level.value!!)
+        Log.d(TAG, "new level is " + _level.value?.LevelId)
+        newQuestion()
+    }
 
     fun newQuestion() {
+        Log.d(TAG, "game level is " + _level.value?.LevelId)
         game.newQuestion()
         _question.value = game.currentQuestion.question
         _solutions.value = game.solutions
+        Log.d(TAG, "new question is: " + question.value)
     }
 
     fun answerQuestion(index: Int) {
@@ -90,6 +94,15 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
         game.updateCharacter(characterSelection)
 
     }
+
+    fun updateLevel(levelSelection: Level) {
+        _level.value = levelSelection
+    }
+
+//    fun updateLevel(levelSelection: Int) {
+//        game.updateLevel(levelSelection)
+//        _level.value = game.level
+//    }
 
     fun getCharacter() : Int {
         return game.character

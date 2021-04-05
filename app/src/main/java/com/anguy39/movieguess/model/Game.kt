@@ -1,6 +1,7 @@
 package com.anguy39.movieguess.model
 
 import android.util.Log
+import com.anguy39.movieguess.ui.main.game.GameViewModel
 import com.google.gson.Gson
 import kotlin.random.Random
 
@@ -11,8 +12,9 @@ data class GameLevel(val level: String, val list: Questions)
 
 class Questions : ArrayList<Question>()
 class GameLevels: ArrayList<GameLevel>()
+data class Level (val LevelId: Int, var levelName: String)
 
-class Game (jsonString: String, level: Int) {
+class Game (jsonString: String, level: Level) {
     private var questions = ArrayList<Question>()
 
     lateinit var gameLevels: ArrayList<GameLevel>
@@ -23,20 +25,22 @@ class Game (jsonString: String, level: Int) {
     val answers: MutableList<Boolean> = mutableListOf()
 
     var character = 0
+//    var level = 0
 
     init {
         val gson = Gson()
         gameLevels = gson.fromJson(jsonString, GameLevels::class.java)
 
         var currLevel = gameLevels[0]
+        Log.d(TAG, "hello: level is " + level)
         for (i in 0 until gameLevels.size) {
-            if (gameLevels[i].level == matchLevel(level)) {
+            if (gameLevels[i].level == matchLevel(level.LevelId)) {
                 currLevel = gameLevels[i]
                 break
             }
         }
         questions = currLevel.list
-        Log.d("Questions: ", questions.toString())
+//        Log.d("Questions: ", questions.toString())
     }
 
     fun answer(answer: Int) {
@@ -47,6 +51,11 @@ class Game (jsonString: String, level: Int) {
         character = characterSelection
 //        Log.d(TAG, "Game: character is " + characterSelection)
     }
+
+//    fun updateLevel(levelSelection: Int) {
+//        level. = levelSelection
+//        Log.d(TAG, "Game: level is " + level)
+//    }
 
 
     fun newQuestion() {
