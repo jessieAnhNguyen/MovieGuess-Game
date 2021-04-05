@@ -1,0 +1,30 @@
+[
+  {
+    "question" : "@drawable/buzz_level1",
+    "solutions" : ["Brave", "Up", "Toy Story"]
+  },
+  {
+    "question" : "@drawable/hercules_level1",
+    "solutions" : ["Sleeping Beauty", "Beauty and the Beast", "Hercules"]
+  },
+  {
+    "question" : "@drawable/ice_age_level1",
+    "solutions" : ["The Croods", "Frozen", "Ice Age"]
+  },
+  {
+    "question" : "@drawable/lionking_level1",
+    "solutions" : ["Madagasca", "Bambi", "Lion King"]
+  },
+  {
+    "question" : "@drawable/olaf_level1",
+    "solutions" : ["Snow White", "Bambi", "Frozen"]
+  },
+  {
+    "question" : "@drawable/tangled_level1",
+    "solutions" : ["Toy Story", "Beauty and the Beast", "Tangled"]
+  },
+  {
+    "question" : "@drawable/up_level1",
+    "solutions" : ["Tangled", "Toy Story", "Up"]
+  }
+]

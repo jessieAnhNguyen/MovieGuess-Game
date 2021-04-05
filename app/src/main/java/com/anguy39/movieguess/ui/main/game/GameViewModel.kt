@@ -28,7 +28,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     var character: LiveData<Int> = _character
 
     init {
-        val jsonString = app.assets.open("quiz.json").bufferedReader().use { it.readText() }
+        val jsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
         game = Game(jsonString)
         newQuestion()
     }
