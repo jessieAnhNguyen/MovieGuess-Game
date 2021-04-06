@@ -41,6 +41,7 @@ class ResultsFragment : Fragment() {
         characterRotateAnimation(displayCharacter(character))
 
         binding.playAgainButton.setOnClickListener {
+            sharedViewModel.resetGame()
             it.findNavController().navigate(R.id.action_resultsFragment_to_welcomeFragment)
         }
 

@@ -104,6 +104,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
 
     fun updateLevel(levelSelection: Level) {
         _level.value = levelSelection
+        game.updateLevel(levelSelection.LevelId)
     }
 
 //    fun updateLevel(levelSelection: Int) {
@@ -123,4 +124,10 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
     fun getCurrentQuestion(): Int {
         return game.getCurrentQuestion()
     }
+
+    fun resetGame() {
+        game.resetGame()
+    }
+
+
 }

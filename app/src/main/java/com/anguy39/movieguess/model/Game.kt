@@ -12,7 +12,7 @@ data class GameLevel(val level: String, val list: Questions)
 
 class Questions : ArrayList<Question>()
 class GameLevels: ArrayList<GameLevel>()
-data class Level (val LevelId: Int, var levelName: String)
+data class Level (var LevelId: Int, var levelName: String)
 
 class Game (jsonString: String, level: Level) {
     private var questions = ArrayList<Question>()
@@ -26,7 +26,7 @@ class Game (jsonString: String, level: Level) {
 
     var character = 0
     val gson = Gson()
-//    var level = 0
+    var gameLevel = 0
 
     init {
 
@@ -35,6 +35,7 @@ class Game (jsonString: String, level: Level) {
         var currLevel = gameLevels[0]
         Log.d(TAG, "hello: level is " + level)
 
+        gameLevel = level.LevelId
         Log.d(TAG, "AAAAAAHHH why is this being created")
         for (i in 0 until gameLevels.size) {
             if (gameLevels[i].level == matchLevel(level.LevelId)) {
@@ -55,10 +56,10 @@ class Game (jsonString: String, level: Level) {
 //        Log.d(TAG, "Game: character is " + characterSelection)
     }
 
-//    fun updateLevel(levelSelection: Int) {
-//        level. = levelSelection
-//        Log.d(TAG, "Game: level is " + level)
-//    }
+    fun updateLevel(levelSelection: Int) {
+        gameLevel = levelSelection
+        Log.d(TAG, "Game: level is " + gameLevel)
+    }
 
 
     fun newQuestion() {
@@ -95,21 +96,20 @@ class Game (jsonString: String, level: Level) {
         return ""
     }
 
-//    fun resetGame () {
-//        gameLevels = gson.fromJson(jsonString, GameLevels::class.java)
-//
-//        var currLevel = gameLevels[0]
-//        Log.d(TAG, "hello: level is " + level)
-//
-//        Log.d(TAG, "AAAAAAHHH why is this being created")
-//        for (i in 0 until gameLevels.size) {
-//            if (gameLevels[i].level == matchLevel(level.LevelId)) {
-//                currLevel = gameLevels[i]
-//                break
-//            }
-//        }
-//        questions = currLevel.list
-//    }
+    fun resetGame () {
+        gameLevel = 0
+        var currLevel = gameLevels[0]
+        for (i in 0 until gameLevels.size) {
+            if (gameLevels[i].level == matchLevel(gameLevel)) {
+                currLevel = gameLevels[i]
+                break
+            }
+        }
+        questions = currLevel.list
+        newQuestion()
+//        answers.clear()
+        Log.d(TAG, "HELLLLLLLO answers size is "+ answers.size)
+    }
 
     companion object {
         const val NUM_QUESTIONS = 4

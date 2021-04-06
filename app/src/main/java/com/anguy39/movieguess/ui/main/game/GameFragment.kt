@@ -10,6 +10,7 @@ import android.view.animation.LinearInterpolator
 import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.observe
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -41,13 +42,21 @@ class GameFragment : Fragment() {
             lifecycleOwner = this@GameFragment
         }
 
-        binding.correctSignImageView.visibility = View.INVISIBLE
-        binding.correctTextView.visibility = View.INVISIBLE
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.gameOverButton.setOnClickListener {
             done = true
             simulateGameOver()
+            viewModel.newQuestion()
         }
+
+        binding.correctSignImageView.visibility = View.INVISIBLE
+        binding.correctTextView.visibility = View.INVISIBLE
+
 
         val uri = viewModel.getQuestionImage(viewModel.getCurrentQuestion())
         val imageResource = resources.getIdentifier(uri, null, "com.anguy39.movieguess")
@@ -83,7 +92,7 @@ class GameFragment : Fragment() {
             binding.answer2Button.isEnabled = false
             binding.answer3Button.isEnabled = false
         }
-        return binding.root
+
     }
 
     private fun evaluateAns(selection: Int) {
@@ -106,18 +115,21 @@ class GameFragment : Fragment() {
 //                    binding.gameOverButton.isEnabled = true
 //                }
 //
-
+                simulateGameOver()
+                viewModel.newQuestion()
                 binding.nextQuestionButton.setOnClickListener {
-                    viewModel.newQuestion()
                     it.findNavController().navigate(R.id.action_gameFragment_self2)
                 }
-                simulateGameOver()
             }
         }
     }
 
     fun simulateGameOver() {
+        Log.d(TAG, "IMPORTANT local answer array size " + localAnswers.size)
+        Log.d(TAG, "localAnswer before: " + localAnswers)
+        Log.d(TAG, "game answers before " + viewModel.answers.value)
         if (!done) done = (localAnswers.size > Game.NUM_QUESTIONS - 1)
+        Log.d(TAG, "done = " + done)
         val correctAnswers = localAnswers.filter { it }.size
 
         if (done) {
@@ -127,10 +139,13 @@ class GameFragment : Fragment() {
             Timer("SettingUp", false).schedule(WIN_ANIM_DURATION+100) {
                 Navigation.findNavController(binding.root).navigate(actionResults)
             }
-            localAnswers = booleanArrayOf()
+//            localAnswers = booleanArrayOf()
+//            viewModel.answers = game.answers.toBooleanArray()
             done = false
-            Log.d(TAG, "array size" + localAnswers.size)
-            Log.d(TAG, "array" + localAnswers.toString())
+            Log.d(TAG,"after done is called local array " + localAnswers.size)
+            Log.d(TAG,"after done is called answer array " + viewModel.answers.value?.size)
+            Log.d(TAG, "localAnswer after: " + localAnswers)
+            Log.d(TAG, "game answers after " + viewModel.answers.value)
         }
         done = false
 
