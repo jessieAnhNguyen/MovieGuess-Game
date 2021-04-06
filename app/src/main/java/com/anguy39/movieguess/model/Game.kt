@@ -1,6 +1,8 @@
 package com.anguy39.movieguess.model
 
+import android.nfc.Tag
 import android.util.Log
+import com.anguy39.movieguess.ui.main.ConfigFragment
 import com.anguy39.movieguess.ui.main.game.GameViewModel
 import com.google.gson.Gson
 import kotlin.random.Random
@@ -15,7 +17,7 @@ class GameLevels: ArrayList<GameLevel>()
 data class Level (var LevelId: Int, var levelName: String)
 
 class Game (jsonString: String, level: Level) {
-    private var questions = ArrayList<Question>()
+    var questions = ArrayList<Question>()
 
     lateinit var gameLevels: ArrayList<GameLevel>
 
@@ -33,12 +35,12 @@ class Game (jsonString: String, level: Level) {
         gameLevels = gson.fromJson(jsonString, GameLevels::class.java)
 
         var currLevel = gameLevels[0]
-        Log.d(TAG, "hello: level is " + level)
 
-        gameLevel = level.LevelId
-        Log.d(TAG, "AAAAAAHHH why is this being created")
+//        gameLevel = level.LevelId
+        gameLevel = ConfigFragment.configLevel.LevelId
+        Log.d(TAG, "init: game level " + gameLevel)
         for (i in 0 until gameLevels.size) {
-            if (gameLevels[i].level == matchLevel(level.LevelId)) {
+            if (gameLevels[i].level == matchLevel(gameLevel)) {
                 currLevel = gameLevels[i]
                 break
             }
@@ -59,19 +61,38 @@ class Game (jsonString: String, level: Level) {
     fun updateLevel(levelSelection: Int) {
         gameLevel = levelSelection
         Log.d(TAG, "Game: level is " + gameLevel)
+
+        var currLevel = gameLevels[0]
+
+        for (i in 0 until gameLevels.size) {
+            if (gameLevels[i].level == matchLevel(gameLevel)) {
+                currLevel = gameLevels[i]
+                break
+            }
+        }
+        questions = currLevel.list
+
+//        for (i in 0 until questions.size) {
+//            Log.d(TAG, "the array is " + questions[i])
+//        }
     }
 
 
     fun newQuestion(wasGameOverPressed: Boolean) {
-        Log.d(TAG, "ARRAY SIZE = " + answers.size)
+//        Log.d(TAG, "ARRAY SIZE = " + answers.size)
         if(wasGameOverPressed){
             answers.clear()
             return
         }
         if (answers.size < NUM_QUESTIONS) {
-            Log.d(TAG, "not new answer here")
+//            Log.d(TAG, "not new answer here")
             currentQuestionIndex = Random.nextInt(questions.size)
             currentQuestion = questions[currentQuestionIndex]
+
+            for (i in 0 until questions.size) {
+                Log.d(TAG, "the array is " + questions[i])
+            }
+
             val temp = currentQuestion.solutions.toMutableList().apply {
                 shuffle()
             }
@@ -112,7 +133,7 @@ class Game (jsonString: String, level: Level) {
         questions = currLevel.list
         newQuestion(false)
 //        answers.clear()
-        Log.d(TAG, "HELLLLLLLO answers size is "+ answers.size)
+//        Log.d(TAG, "HELLLLLLLO answers size is "+ answers.size)
     }
 
     companion object {

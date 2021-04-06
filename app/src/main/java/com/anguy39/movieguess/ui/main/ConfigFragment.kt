@@ -72,7 +72,7 @@ class ConfigFragment : Fragment() {
             cardItem.setCardBackgroundColor(android.graphics.Color.parseColor("#14a5c9"))
             sharedViewModel.updateLevel(level)
             configLevel = level
-            sharedViewModel.newGame()
+//            sharedViewModel.newGame()
             Log.d(TAG, "call new game!")
             binding.root.findNavController().navigate(R.id.action_configFragment_to_gameFragment)
 //            Log.d(TAG, "level is " + sharedViewModel.level)

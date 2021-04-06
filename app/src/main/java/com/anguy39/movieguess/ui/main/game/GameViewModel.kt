@@ -56,7 +56,7 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
 
         _level.value = ConfigFragment.configLevel
 
-        Log.d(TAG, "In init, the level is " + _level.value?.LevelId)
+//        Log.d(TAG, "In init, the level is " + _level.value?.LevelId)
 
         jsonString = app.assets.open("moviesEasy.json").bufferedReader().use { it.readText() }
         newGame()
@@ -74,22 +74,29 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
 //    }
 
     fun newGame() {
-        Log.d(TAG, "Initialize new game ...")
+//        Log.d(TAG, "Initialize new game ...")
+
         this.game = Game(jsonString, _level.value!!)
-
-        Log.d(TAG, "new level is " + _level.value?.LevelId)
-
-        Log.d(TAG, "First game is " + this.game)
+//
+//        Log.d(TAG, "new level is " + _level.value?.LevelId)
+//
+//        Log.d(TAG, "First game is " + this.game)
+        for (i in 0 until game.questions.size) {
+            Log.d(TAG, "the array is " + game.questions[i])
+        }
         newQuestion(false)
     }
 
     fun newQuestion(wasGameOverPressed: Boolean) {
-        Log.d(TAG, "game level is " + _level.value?.LevelId)
-        Log.d(TAG, "Then game is " + game)
+//        Log.d(TAG, "game level is " + _level.value?.LevelId)
+//        Log.d(TAG, "Then game is " + game)
+
+        game.updateLevel(_level.value?.LevelId!!)
         game.newQuestion(wasGameOverPressed)
+
         _question.value = game.currentQuestion.question
         _solutions.value = game.solutions
-        Log.d(TAG, "new question is: " + question.value)
+//        Log.d(TAG, "new question is: " + question.value)
     }
 
     fun answerQuestion(index: Int) {

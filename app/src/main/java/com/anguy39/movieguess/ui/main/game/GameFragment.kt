@@ -125,11 +125,11 @@ class GameFragment : Fragment() {
     }
 
     fun simulateGameOver() {
-        Log.d(TAG, "IMPORTANT local answer array size " + localAnswers.size)
-        Log.d(TAG, "localAnswer before: " + localAnswers)
-        Log.d(TAG, "game answers before " + viewModel.answers.value)
+//        Log.d(TAG, "IMPORTANT local answer array size " + localAnswers.size)
+//        Log.d(TAG, "localAnswer before: " + localAnswers)
+//        Log.d(TAG, "game answers before " + viewModel.answers.value)
         if (!done) done = (localAnswers.size > Game.NUM_QUESTIONS - 1)
-        Log.d(TAG, "done = " + done)
+//        Log.d(TAG, "done = " + done)
         val correctAnswers = localAnswers.filter { it }.size
 
         if (done) {
@@ -142,10 +142,10 @@ class GameFragment : Fragment() {
 //            localAnswers = booleanArrayOf()
 //            viewModel.answers = game.answers.toBooleanArray()
             done = false
-            Log.d(TAG,"after done is called local array " + localAnswers.size)
-            Log.d(TAG,"after done is called answer array " + viewModel.answers.value?.size)
-            Log.d(TAG, "localAnswer after: " + localAnswers)
-            Log.d(TAG, "game answers after " + viewModel.answers.value)
+//            Log.d(TAG,"after done is called local array " + localAnswers.size)
+//            Log.d(TAG,"after done is called answer array " + viewModel.answers.value?.size)
+//            Log.d(TAG, "localAnswer after: " + localAnswers)
+//            Log.d(TAG, "game answers after " + viewModel.answers.value)
         }
         done = false
 
