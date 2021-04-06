@@ -62,8 +62,12 @@ class Game (jsonString: String, level: Level) {
     }
 
 
-    fun newQuestion() {
+    fun newQuestion(wasGameOverPressed: Boolean) {
         Log.d(TAG, "ARRAY SIZE = " + answers.size)
+        if(wasGameOverPressed){
+            answers.clear()
+            return
+        }
         if (answers.size < NUM_QUESTIONS) {
             Log.d(TAG, "not new answer here")
             currentQuestionIndex = Random.nextInt(questions.size)
@@ -106,7 +110,7 @@ class Game (jsonString: String, level: Level) {
             }
         }
         questions = currLevel.list
-        newQuestion()
+        newQuestion(false)
 //        answers.clear()
         Log.d(TAG, "HELLLLLLLO answers size is "+ answers.size)
     }

@@ -51,7 +51,7 @@ class GameFragment : Fragment() {
         binding.gameOverButton.setOnClickListener {
             done = true
             simulateGameOver()
-            viewModel.newQuestion()
+            viewModel.newQuestion(true)
         }
 
         binding.correctSignImageView.visibility = View.INVISIBLE
@@ -116,7 +116,7 @@ class GameFragment : Fragment() {
 //                }
 //
                 simulateGameOver()
-                viewModel.newQuestion()
+                viewModel.newQuestion(false)
                 binding.nextQuestionButton.setOnClickListener {
                     it.findNavController().navigate(R.id.action_gameFragment_self2)
                 }

@@ -80,13 +80,13 @@ class GameViewModel(app: Application) : AndroidViewModel(app) {
         Log.d(TAG, "new level is " + _level.value?.LevelId)
 
         Log.d(TAG, "First game is " + this.game)
-        newQuestion()
+        newQuestion(false)
     }
 
-    fun newQuestion() {
+    fun newQuestion(wasGameOverPressed: Boolean) {
         Log.d(TAG, "game level is " + _level.value?.LevelId)
         Log.d(TAG, "Then game is " + game)
-        game.newQuestion()
+        game.newQuestion(wasGameOverPressed)
         _question.value = game.currentQuestion.question
         _solutions.value = game.solutions
         Log.d(TAG, "new question is: " + question.value)
